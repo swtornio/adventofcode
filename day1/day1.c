@@ -29,15 +29,27 @@ int main (void) {
 	char *p;
 	size_t len = 0;
 	long highest = 0;
+	long second = 0;
+	long third = 0;
 	long current = 0;
 
 	while(getline(&line, &len, fp) != -1) {
 		if (strlen(line) > 1) {
 			current += strtol(line, &p, 10);
 		} else {
-			if (current > highest) {
-				printf("%lu is higher than %lu\n", current, highest);
-				highest = current;
+			if (current > third) {
+				if (current > second) {
+					if (current > highest) {
+						third = second;
+						second = highest;
+						highest = current;
+					} else {
+						third = second;
+						second = current;
+					}
+				} else {
+					third = current;
+				}
 			}
 			current = 0;
 		} 
@@ -46,6 +58,8 @@ int main (void) {
 	}
 
 	printf("Highest load is %lu\n", highest);
+	printf("Second load is %lu\n", second);
+	printf("Third load is %lu\n", third);
 
 	fclose(fp);
 	free(line);
