@@ -9,16 +9,16 @@ highest = 0
 current = 0
 
 with open("input.txt", "r") as f:
-	for line in f:
-		if line.strip() != '':
-			# if line is not empty this should be true
-			# cast to int and store in current
-			current += int(line)
-		else:
-			# empty line means check if current is highest
-			if current > highest:
-				highest = current
-			current = 0
-			lines = 0
+    for line in f:
+        if line.strip() != '':
+            # if line is not empty this should be true
+            # cast to int and store in current
+            current += int(line)
+        else:
+            # empty line means check if current is highest
+            if current > highest:
+                highest = current
+            current = 0
+            lines = 0
 
 print(f"The most calories held by an elf is {highest}.")
